@@ -1,0 +1,10 @@
+
+###
+# Testing data transfer URL for getting a move for interacting with the robotic
+#
+
+GET /dataTransfer/getMove
+Accept: application/json
+Host: localhost:8080
+
+###

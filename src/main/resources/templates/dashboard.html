@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/authentication/logout}" method="post">
+        <button type="submit">LOGOUT</button>
+    </form>
+
+    <p>Hello <span th:text="${loggedInUser.getUsername()}"></span></p>
+    <p>You can move the robotic by using the arrow keys. Let`s go!</p>
+    <p><span id="keyCode"></span></p>
+
+    <!-- HIDDEN FORM -->
+    <form id="keydownForm" method="post" th:action="@{/dashboard/setMove}" th:object="${Record}">
+        <input id="keydownInput" hidden th:field="*{move}">
+    </form>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("keydown", function (event) {
+        switch (event.which) {
+            case 32:
+                document.getElementById("keyCode").textContent = "You pushed 'Spacing' for graping!";
+                break;
+            case 37:
+                document.getElementById("keyCode").textContent = "You pushed 'Arrow Left'!";
+                break;
+            case 38:
+                document.getElementById("keyCode").textContent = "You pushed 'Arrow Up'!";
+                break;
+            case 39:
+                document.getElementById("keyCode").textContent = "You pushed 'Arrow Right'!";
+                break;
+            case 40:
+                document.getElementById("keyCode").textContent = "You pushed 'Arrow Down'!";
+                break;
+        }
+
+        document.getElementById("keydownInput").value = event.which;
+        document.getElementById("keydownForm").submit();
+    });
+
+    document.addEventListener("keyup", function (ev) {
+        if (document.getElementById("keydownInput").value !== 0) {
+            document.getElementById("keydownInput").value = 0;
+            document.getElementById("keydownForm").submit();
+        }
+    });
+</script>
+</body>
+</html>

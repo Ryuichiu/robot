@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:href="@{/static/css/styles.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <!-- LOGIN -->
+    <div class="loginBox">
+        <div class="title">LOGIN</div>
+
+        <form autocomplete="off" th:action="@{/authentication/}" method="post">
+            <div class="input">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text">
+                <span class="spin"></span>
+            </div>
+
+            <div class="input">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <span class="spin"></span>
+            </div>
+
+            <div class="button login">
+                <button type="submit"><span>GO</span> <i class="fa fa-check"></i></button>
+            </div>
+        </form>
+
+        <a href="" class="forgotPasswordLink">Forgot your password?</a>
+    </div>
+
+    <!-- REGISTRATION -->
+    <div class="registrationBox">
+        <div class="material-button alt-2"><span class="shape"></span></div>
+
+        <div class="title">REGISTER</div>
+
+        <form autocomplete="off" th:action="@{/authentication/registration}" th:object="${User}" method="post">
+            <div class="input">
+                <label for="createUsername">Username</label>
+                <input id="createUsername" th:field="*{username}" type="text">
+                <span class="spin"></span>
+            </div>
+
+            <div class="input">
+                <label for="createPassword">Password</label>
+                <input id="createPassword" th:field="*{password}" type="password">
+                <span class="spin"></span>
+            </div>
+
+            <div class="input">
+                <label for="repeatPassword">Repeat Password</label>
+                <input id="repeatPassword" type="password">
+                <span class="spin"></span>
+            </div>
+
+            <div class="button">
+                <button type="submit"><span>NEXT</span></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/static/js/script.js}"></script>
+
+</body>
+</html>
